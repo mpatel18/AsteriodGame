@@ -17,6 +17,11 @@
 		3F06C1D022768EF400D22ABB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F06C1CE22768EF400D22ABB /* LaunchScreen.storyboard */; };
 		3F06C1DB22768EF400D22ABB /* AsteriodGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06C1DA22768EF400D22ABB /* AsteriodGameTests.swift */; };
 		3F06C1E622768EF400D22ABB /* AsteriodGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06C1E522768EF400D22ABB /* AsteriodGameUITests.swift */; };
+		CB868A362277EBF60095143F /* Background.sks in Resources */ = {isa = PBXBuildFile; fileRef = CB868A352277EBF50095143F /* Background.sks */; };
+		CB868A3B2277EC0E0095143F /* Gun.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB868A372277EC0D0095143F /* Gun.mp3 */; };
+		CB868A3C2277EC0E0095143F /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = CB868A382277EC0D0095143F /* MyParticle.sks */; };
+		CB868A3D2277EC0E0095143F /* Bomb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB868A392277EC0D0095143F /* Bomb.mp3 */; };
+		CB868A3E2277EC0E0095143F /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = CB868A3A2277EC0D0095143F /* spark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,11 @@
 		3F06C1E122768EF400D22ABB /* AsteriodGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsteriodGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F06C1E522768EF400D22ABB /* AsteriodGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteriodGameUITests.swift; sourceTree = "<group>"; };
 		3F06C1E722768EF400D22ABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB868A352277EBF50095143F /* Background.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Background.sks; sourceTree = "<group>"; };
+		CB868A372277EC0D0095143F /* Gun.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Gun.mp3; sourceTree = "<group>"; };
+		CB868A382277EC0D0095143F /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
+		CB868A392277EC0D0095143F /* Bomb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Bomb.mp3; sourceTree = "<group>"; };
+		CB868A3A2277EC0D0095143F /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +120,11 @@
 				3F06C1C722768EF200D22ABB /* GameViewController.swift */,
 				3F06C1C922768EF200D22ABB /* Main.storyboard */,
 				3F06C1CC22768EF400D22ABB /* Assets.xcassets */,
+				CB868A352277EBF50095143F /* Background.sks */,
+				CB868A392277EC0D0095143F /* Bomb.mp3 */,
+				CB868A372277EC0D0095143F /* Gun.mp3 */,
+				CB868A382277EC0D0095143F /* MyParticle.sks */,
+				CB868A3A2277EC0D0095143F /* spark.png */,
 				3F06C1CE22768EF400D22ABB /* LaunchScreen.storyboard */,
 				3F06C1D122768EF400D22ABB /* Info.plist */,
 			);
@@ -241,8 +256,13 @@
 				3F06C1CB22768EF200D22ABB /* Main.storyboard in Resources */,
 				3F06C1C222768EF200D22ABB /* GameScene.sks in Resources */,
 				3F06C1CD22768EF400D22ABB /* Assets.xcassets in Resources */,
+				CB868A3D2277EC0E0095143F /* Bomb.mp3 in Resources */,
+				CB868A362277EBF60095143F /* Background.sks in Resources */,
+				CB868A3E2277EC0E0095143F /* spark.png in Resources */,
+				CB868A3B2277EC0E0095143F /* Gun.mp3 in Resources */,
 				3F06C1D022768EF400D22ABB /* LaunchScreen.storyboard in Resources */,
 				3F06C1C422768EF200D22ABB /* Actions.sks in Resources */,
+				CB868A3C2277EC0E0095143F /* MyParticle.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
