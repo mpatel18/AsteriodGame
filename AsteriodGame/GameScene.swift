@@ -146,7 +146,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //print(rockXRange)
         rock.position = CGPoint(x: px, y: py)
         rock.zRotation = CGFloat(Int.random(in: 0..<360))
-        rock.physicsBody = SKPhysicsBody(circleOfRadius: rockWidth)
+        rock.physicsBody = SKPhysicsBody(circleOfRadius: rockWidth / 2)
         rock.physicsBody?.isDynamic = true
         rock.physicsBody?.collisionBitMask = 0
         rock.physicsBody?.contactTestBitMask = 1
@@ -154,13 +154,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //print("\(px) \(rock) \(self.frame.size.height)")
         self.addChild(rock)
         
-        var actions = [SKAction]()
+        rock.run(SKAction.move(to: CGPoint(x: px, y: -py), duration: animationSpeed))
+        
+        rock.run(SKAction.wait(forDuration: animationSpeed)) {
+            rock.removeFromParent()
+        }
+        
+        /*var actions = [SKAction]()
         
         actions.append(SKAction.move(to: CGPoint(x: px, y: -py), duration: animationSpeed))
         actions.append(SKAction.removeFromParent())
         
         rock.run(SKAction.sequence(actions))
-        //rock.run(removeRock)
+        //rock.run(removeRock)*/
         
     }
     
@@ -170,7 +176,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func fire() {
         let bullet = SKSpriteNode(imageNamed: "bullet")
-        self.run(SKAction.playSoundFileNamed("Bomb.mp3", waitForCompletion: false))
+        self.run(SKAction.playSoundFileNamed("Gun.mp3", waitForCompletion: false))
         bullet.position = CGPoint(x: ship.position.x, y: ship.position.y + ship.size.height / 2)
         bullet.physicsBody = SKPhysicsBody(circleOfRadius: bullet.size.width / 2)
         bullet.physicsBody?.isDynamic = true
@@ -181,12 +187,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(bullet)
         
-        var actions = [SKAction]()
+        bullet.run(SKAction.move(to: CGPoint(x: bullet.position.x, y: self.frame.size.height / 2 + bullet.size.height), duration: animationSpeed / 20))
+        
+        bullet.run(SKAction.wait(forDuration: animationSpeed / 20)) {
+            bullet.removeFromParent()
+        }
+        
+        /*var actions = [SKAction]()
         
         actions.append(SKAction.move(to: CGPoint(x: bullet.position.x, y: self.frame.size.height / 2 + bullet.size.height), duration: animationSpeed / 20))
         actions.append(SKAction.removeFromParent())
         
-        bullet.run(SKAction.sequence(actions))
+        bullet.run(SKAction.sequence(actions))*/
         
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        if ((contact.bodyA.categoryBitMask == 1 && contact.bodyB.categoryBitMask == 2) || (contact.bodyA.categoryBitMask == 2 && contact.bodyB.categoryBitMask == 1)) {
+            distoryRock(bodyA: contact.bodyA, bodyB: contact.bodyB)
+        }
+    }
+    
+    func distoryRock(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody) {
+        let myParticle = SKEmitterNode(fileNamed: "MyParticle.sks")!
+        if (bodyA.categoryBitMask == 2) {
+            myParticle.position = (bodyA.node?.position)!
+        } else {
+            myParticle.position = (bodyB.node?.position)!
+        }
+        
+        self.addChild(myParticle)
+        var actions = [SKAction]()
+        
+        bodyA.node?.removeFromParent()
+        bodyB.node?.removeFromParent()
+        
+        actions.append(SKAction.playSoundFileNamed("Bomb.mp3", waitForCompletion: false))
+        actions.append(SKAction.wait(forDuration: 2))
+        actions.append(SKAction.removeFromParent())
+        self.run(SKAction.sequence(actions))
     }
 }
