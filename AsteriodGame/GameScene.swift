@@ -15,7 +15,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
-    private var lastUpdateTime : TimeInterval = 0
+    /*private var lastUpdateTime : TimeInterval = 0
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
@@ -107,12 +107,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         self.lastUpdateTime = currentTime
-    }
+    }*/
     
     var background: SKEmitterNode!
     var ship: SKSpriteNode!
     let rocks = ["rock1", "rock2"]
-    let powerUps = ["speedUp", "slowDown", "addScore", "addLife", "dead"]
+    let powerUps = ["speedUp", "slowDown", "addScore", "addLife", "dead", "doubleScore", "clearScreen"]
     var animationTime: TimeInterval = 9
     
     var timeInterval: TimeInterval = 0.9
@@ -123,6 +123,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lives: Int = 3
     var livesNode: [SKSpriteNode] = []
     var score: Int = 0
+    var scoreMultiplyer = 1
     
     override func didMove(to view: SKView) {
         updateLives(diff: 0)
@@ -140,8 +141,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ship.physicsBody = SKPhysicsBody(circleOfRadius: ship.size.width / 2)
         ship.physicsBody?.isDynamic = true
         ship.physicsBody?.collisionBitMask = 0
-        ship.physicsBody?.contactTestBitMask = 33
+        ship.physicsBody?.contactTestBitMask = 1
         ship.physicsBody?.categoryBitMask = 3
+        ship.physicsBody?.usesPreciseCollisionDetection = true
         self.addChild(ship)
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
@@ -173,9 +175,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rock.zRotation = CGFloat(Int.random(in: 0..<360))
         rock.physicsBody = SKPhysicsBody(circleOfRadius: rockWidth / 2)
         rock.physicsBody?.isDynamic = true
-        rock.physicsBody?.collisionBitMask = 0
-        rock.physicsBody?.contactTestBitMask = 22
-        rock.physicsBody?.categoryBitMask = 2
+        rock.physicsBody?.collisionBitMask = 2
+        rock.physicsBody?.contactTestBitMask = 1
+        rock.physicsBody?.categoryBitMask = 1
+        rock.physicsBody?.usesPreciseCollisionDetection = true
         //print("\(px) \(rock) \(self.frame.size.height)")
         self.addChild(rock)
         
@@ -198,9 +201,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bullet.position = CGPoint(x: ship.position.x, y: ship.position.y + ship.size.height / 2)
         bullet.physicsBody = SKPhysicsBody(circleOfRadius: bullet.size.width / 2)
         bullet.physicsBody?.isDynamic = true
-        bullet.physicsBody?.collisionBitMask = 0
-        bullet.physicsBody?.contactTestBitMask = 11
-        bullet.physicsBody?.categoryBitMask = 1
+        bullet.physicsBody?.collisionBitMask = 1
+        bullet.physicsBody?.contactTestBitMask = 1
+        bullet.physicsBody?.categoryBitMask = 0
         bullet.physicsBody?.usesPreciseCollisionDetection = true
         
         self.addChild(bullet)
@@ -222,16 +225,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (contact.bodyA.node?.name == "rock1" || contact.bodyA.node?.name == "rock2") {
             bodyA = contact.bodyA
             bodyB = contact.bodyB
-            //print(bodyA.node?.name)
+            //print(bodyB.node?.name)
         //if the bodyB is rock, then we need to handle the cases where bodyB is bullet or ship
         } else if (contact.bodyB.node?.name == "rock1" || contact.bodyB.node?.name == "rock2") {
             bodyB = contact.bodyA
             bodyA = contact.bodyB
+            //print(bodyB.node?.name)
         //if the bodyA is ship and bodyB is not rock, then we need to handle the cases where bodyB is powerup
         } else if (contact.bodyA.node?.name == "ship") {
+            //print("1111")
             bodyA = contact.bodyA
             bodyB = contact.bodyB
         } else if (contact.bodyB.node?.name == "ship") {
+            //print("2222")
             bodyB = contact.bodyA
             bodyA = contact.bodyB
         }
@@ -241,8 +247,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //When a rock hitted by a bullet or ship
         if (bodyA.node?.name == "rock1" || bodyA.node?.name == "rock2") {
-            //print("bodyB: \(bodyA.node?.name)")
-            if (bodyB.node?.name == "bullet") {
+            //print("bodyA: \(bodyA.node?.name)")
+            if (bodyB.node?.name == "bullet" || bodyB.node?.name == "deadline") {
                 distoryRock(rock: bodyA, bullet: bodyB)
                 //print("bodyB: \(bodyB.node?.name)")
             } else if (bodyB.node?.name == "ship") {
@@ -250,9 +256,91 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         //when a ship picked a powerup
         } else if (bodyA.node?.name == "ship") {
-            
+            //print("ship")
+            if (powerUps.contains((bodyB.node?.name)!)) {
+                //print("run")
+                bodyB.node?.removeFromParent()
+                if (bodyB.node?.name == "speedUp") {
+                    speedUp()
+                } else if (bodyB.node?.name == "slowDown") {
+                    slowDown()
+                } else if (bodyB.node?.name == "addScore") {
+                    addScore()
+                } else if (bodyB.node?.name == "addLife") {
+                    addLife()
+                } else if (bodyB.node?.name == "dead") {
+                    dead()
+                } else if (bodyB.node?.name == "doubleScore") {
+                    doubleScore()
+                } else if (bodyB.node?.name == "clearScreen") {
+                    clearScreen()
+                }
+            }
         }
+    }
+    
+    func speedUp() {
+        print(timeInterval)
+        if (self.animationTime > 3) {
+            self.animationTime -= 3
+            self.timeInterval -= 0.3
+            timer.invalidate()
+            timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(rockDown), userInfo: nil, repeats: true)
+        }
+    }
+    
+    func slowDown() {
+        print(timeInterval)
+        if (self.animationTime < 15) {
+            self.animationTime += 3
+            self.timeInterval += 0.3
+            timer.invalidate()
+            timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(rockDown), userInfo: nil, repeats: true)
+        }
+    }
+    
+    func addScore() {
+        self.score += 100
+    }
+    
+    func addLife() {
+        self.lives += 1
+        updateLives(diff: 1)
+    }
+    
+    func dead() {
+        while self.lives > 0 {
+            self.lives -= 1
+            updateLives(diff: -1)
+        }
+        gameOver()
+    }
+    
+    func doubleScore() {
+        if (scoreMultiplyer < 8) {
+            scoreMultiplyer *= 2
+        }
+    }
+    
+    func clearScreen() {
+        let deadline = SKSpriteNode(imageNamed: "deadline")
+        deadline.name = "deadline"
+        self.run(SKAction.playSoundFileNamed("Gun.mp3", waitForCompletion: false))
+        deadline.position = CGPoint(x: ship.position.x, y: ship.position.y + ship.size.height / 2)
+        deadline.physicsBody = SKPhysicsBody(rectangleOf: deadline.size)
+        deadline.physicsBody?.isDynamic = true
+        deadline.physicsBody?.collisionBitMask = 1
+        deadline.physicsBody?.contactTestBitMask = 1
+        deadline.physicsBody?.categoryBitMask = 0
+        deadline.physicsBody?.usesPreciseCollisionDetection = true
         
+        self.addChild(deadline)
+        
+        deadline.run(SKAction.move(to: CGPoint(x: deadline.position.x, y: self.frame.size.height / 2), duration: animationTime / 2))
+        
+        deadline.run(SKAction.wait(forDuration: animationTime / 2)) {
+            deadline.removeFromParent()
+        }
     }
     
     func distoryRock(rock: SKPhysicsBody, bullet: SKPhysicsBody) {
@@ -260,9 +348,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         myParticle.position = (rock.node?.position)!
         self.addChild(myParticle)
         rock.node?.removeFromParent()
-        bullet.node?.removeFromParent()
-        score += 1
-        let powerUpChance = Int.random(in: 0..<20)
+        if (bullet.node?.name == "bullet") {
+            bullet.node?.removeFromParent()
+        }
+        score += 1 * scoreMultiplyer
+        let powerUpChance = Int.random(in: 6..<10)
         if (powerUpChance < powerUps.count) {
             let powerUpName = powerUps[powerUpChance]
             let powerUp = SKSpriteNode(imageNamed: powerUpName)
@@ -270,9 +360,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             powerUp.position = (rock.node?.position)!
             powerUp.physicsBody = SKPhysicsBody(circleOfRadius: powerUp.size.width / 2)
             powerUp.physicsBody?.isDynamic = true
-            powerUp.physicsBody?.collisionBitMask = 0
-            powerUp.physicsBody?.contactTestBitMask = 44
-            powerUp.physicsBody?.categoryBitMask = 4
+            powerUp.physicsBody?.collisionBitMask = 6
+            powerUp.physicsBody?.contactTestBitMask = 1
+            powerUp.physicsBody?.categoryBitMask = 0
             powerUp.physicsBody?.usesPreciseCollisionDetection = true
             self.addChild(powerUp)
             let halfHeight = self.frame.size.height / 2
@@ -282,7 +372,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 powerUp.run(SKAction.move(to: CGPoint(x: powerUp.position.x + CGFloat(Int.random(in: -10...10)), y: powerUp.position.y + 10), duration: animationSpeed / Double(endPoint)))
             }*/
             let duration = animationTime * Double((powerUp.position.y + halfHeight) / halfHeight) / 4
-            powerUp.run(SKAction.move(to: CGPoint(x: CGFloat(Int.random(in: -boundary...boundary)), y: endPoint), duration: duration))
+            //powerUp.run(SKAction.move(to: CGPoint(x: CGFloat(Int.random(in: -boundary...boundary)), y: endPoint), duration: duration))
+            powerUp.run(SKAction.move(to: ship.position, duration: duration))
             powerUp.run(SKAction.wait(forDuration: duration)) {
                 powerUp.removeFromParent()
             }
@@ -308,11 +399,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.run(SKAction.sequence(actions))
         
         lives -= 1
-        if (lives > 0) {
+        if lives >= 0 {
             updateLives(diff: -1)
-        } else {
-            
         }
+        if lives == 0{
+            gameOver()
+        }
+    }
+    
+    func gameOver() {
+        return
     }
     
     override func didSimulatePhysics() {
