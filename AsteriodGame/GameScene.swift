@@ -31,7 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var livesNode: [SKSpriteNode] = []
     var score: Int = 0
     var scoreMultiplyer = 1
-    var tripleBullet = false
+    var tripleBullet = 1
     
     override func didMove(to view: SKView) {
         updateLives(diff: 0)
@@ -104,9 +104,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if tripleBullet {
-            fire(direction: -1)
-            fire(direction: 1)
+        for i in 1..<tripleBullet {
+            fire(direction: CGFloat(-i))
+            fire(direction: CGFloat(i))
         }
         fire(direction: 0)
     }
@@ -200,10 +200,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     clearScreen()
                 } else if (bodyB.node?.name == "tripleBullet") {
                     self.run(SKAction.playSoundFileNamed("buff.mp3", waitForCompletion: false))
-                    tripleBullet = true
+                    tripleBullet += 1
                 } else if (bodyB.node?.name == "singleBullet") {
                     self.run(SKAction.playSoundFileNamed("debuff.mp3", waitForCompletion: false))
-                    tripleBullet = false
+                    tripleBullet = 1
                 }
             }
         }
