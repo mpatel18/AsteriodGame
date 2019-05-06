@@ -15,104 +15,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
-    /*private var lastUpdateTime : TimeInterval = 0
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
-    
-    override func sceneDidLoad() {
-
-        self.lastUpdateTime = 0
-        
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
-        
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
-    }
-    
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
-    
-    /*override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }*/
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        
-        // Initialize _lastUpdateTime if it has not already been
-        if (self.lastUpdateTime == 0) {
-            self.lastUpdateTime = currentTime
-        }
-        
-        // Calculate time since last update
-        let dt = currentTime - self.lastUpdateTime
-        
-        // Update entities
-        for entity in self.entities {
-            entity.update(deltaTime: dt)
-        }
-        
-        self.lastUpdateTime = currentTime
-    }*/
-    
+    var backgrounds = ["Background0", "Background1", "Background2"]
     var background: SKEmitterNode!
     var ship: SKSpriteNode!
-    let rocks = ["rock1", "rock2"]
-    let powerUps = ["speedUp", "slowDown", "addScore", "addLife", "dead", "doubleScore", "clearScreen"]
+    let rocks = ["rock1", "rock2", "rock3"]
+    let powerUps = ["slowDown", "addScore", "addLife", "doubleScore", "clearScreen", "tripleBullet", "dead", "speedUp", "singleBullet"]
     var animationTime: TimeInterval = 9
     
     var timeInterval: TimeInterval = 0.9
@@ -124,16 +31,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var livesNode: [SKSpriteNode] = []
     var score: Int = 0
     var scoreMultiplyer = 1
+    var tripleBullet = false
     
     override func didMove(to view: SKView) {
         updateLives(diff: 0)
         
-        background = SKEmitterNode(fileNamed: "Background")
-        background.position = CGPoint(x: 0, y: self.view!.bounds.height)
-        background.advanceSimulationTime(20)
-        self.addChild(background)
-        
-        background.zPosition = -2
+        for i in 0..<backgrounds.count {
+            setBackground(val: i)
+        }
         
         ship = SKSpriteNode(imageNamed: "ship")
         ship.name = "ship"
@@ -159,6 +64,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.xMove = CGFloat(move.x) * 0.75 + self.xMove * 0.25
             }
         }
+    }
+    
+    func setBackground(val: Int) {
+        background = SKEmitterNode(fileNamed: backgrounds[val])
+        background.position = CGPoint(x: 0, y: self.view!.bounds.height)
+        background.advanceSimulationTime(TimeInterval(5 * val + 10))
+        background.zPosition = CGFloat(val - 5)
+        self.addChild(background)
     }
     
     @objc func rockDown() {
@@ -191,10 +104,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        fire()
+        if tripleBullet {
+            fire(direction: -1)
+            fire(direction: 1)
+        }
+        fire(direction: 0)
     }
     
-    func fire() {
+    func fire(direction: CGFloat) {
         let bullet = SKSpriteNode(imageNamed: "bullet")
         bullet.name = "bullet"
         self.run(SKAction.playSoundFileNamed("Gun.mp3", waitForCompletion: false))
@@ -208,7 +125,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(bullet)
         
-        bullet.run(SKAction.move(to: CGPoint(x: bullet.position.x, y: self.frame.size.height / 2 + bullet.size.height), duration: animationTime / 20))
+        bullet.run(SKAction.move(to: CGPoint(x: bullet.position.x + direction * self.frame.size.width, y: self.frame.size.height / 2 + bullet.size.height), duration: animationTime / 20))
         
         bullet.run(SKAction.wait(forDuration: animationTime / 20)) {
             bullet.removeFromParent()
@@ -222,12 +139,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var bodyB: SKPhysicsBody = contact.bodyB
         
         //if the bodyA is rock, then we need to handle the cases where bodyB is bullet or ship
-        if (contact.bodyA.node?.name == "rock1" || contact.bodyA.node?.name == "rock2") {
+        if (contact.bodyA.collisionBitMask == 2) {
             bodyA = contact.bodyA
             bodyB = contact.bodyB
             //print(bodyB.node?.name)
         //if the bodyB is rock, then we need to handle the cases where bodyB is bullet or ship
-        } else if (contact.bodyB.node?.name == "rock1" || contact.bodyB.node?.name == "rock2") {
+        } else if (contact.bodyB.collisionBitMask == 2) {
             bodyB = contact.bodyA
             bodyA = contact.bodyB
             //print(bodyB.node?.name)
@@ -246,7 +163,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }*/
         
         //When a rock hitted by a bullet or ship
-        if (bodyA.node?.name == "rock1" || bodyA.node?.name == "rock2") {
+        if (bodyA.collisionBitMask == 2) {
             //print("bodyA: \(bodyA.node?.name)")
             if (bodyB.node?.name == "bullet" || bodyB.node?.name == "deadline") {
                 distoryRock(rock: bodyA, bullet: bodyB)
@@ -254,33 +171,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else if (bodyB.node?.name == "ship") {
                 distoryShip(rock: bodyA, ship: bodyB)
             }
-        //when a ship picked a powerup
+        //when a ship picked a powerup, it will generate a powerUp node and play relative sound effect.
         } else if (bodyA.node?.name == "ship") {
             //print("ship")
             if (powerUps.contains((bodyB.node?.name)!)) {
                 //print("run")
                 bodyB.node?.removeFromParent()
                 if (bodyB.node?.name == "speedUp") {
+                    self.run(SKAction.playSoundFileNamed("debuff.mp3", waitForCompletion: false))
                     speedUp()
                 } else if (bodyB.node?.name == "slowDown") {
+                    self.run(SKAction.playSoundFileNamed("buff.mp3", waitForCompletion: false))
                     slowDown()
                 } else if (bodyB.node?.name == "addScore") {
+                    self.run(SKAction.playSoundFileNamed("buff.mp3", waitForCompletion: false))
                     addScore()
                 } else if (bodyB.node?.name == "addLife") {
+                    self.run(SKAction.playSoundFileNamed("buff.mp3", waitForCompletion: false))
                     addLife()
                 } else if (bodyB.node?.name == "dead") {
+                    self.run(SKAction.playSoundFileNamed("debuff.mp3", waitForCompletion: false))
                     dead()
                 } else if (bodyB.node?.name == "doubleScore") {
+                    self.run(SKAction.playSoundFileNamed("buff.mp3", waitForCompletion: false))
                     doubleScore()
                 } else if (bodyB.node?.name == "clearScreen") {
+                    self.run(SKAction.playSoundFileNamed("buff.mp3", waitForCompletion: false))
                     clearScreen()
+                } else if (bodyB.node?.name == "tripleBullet") {
+                    self.run(SKAction.playSoundFileNamed("buff.mp3", waitForCompletion: false))
+                    tripleBullet = true
+                } else if (bodyB.node?.name == "singleBullet") {
+                    self.run(SKAction.playSoundFileNamed("debuff.mp3", waitForCompletion: false))
+                    tripleBullet = false
                 }
             }
         }
     }
     
     func speedUp() {
-        print(timeInterval)
+        //print(timeInterval)
         if (self.animationTime > 3) {
             self.animationTime -= 3
             self.timeInterval -= 0.3
@@ -290,7 +220,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func slowDown() {
-        print(timeInterval)
+        //print(timeInterval)
         if (self.animationTime < 15) {
             self.animationTime += 3
             self.timeInterval += 0.3
@@ -347,13 +277,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let myParticle = SKEmitterNode(fileNamed: "MyParticle.sks")!
         myParticle.position = (rock.node?.position)!
         self.addChild(myParticle)
+        //if the rock is a big rock, it will be shrinked to a smaller one.
+        if (bullet.node?.name != "deadline" && rock.node?.name == "rock1") {
+            let name = "rock3"
+            let rock3 = SKSpriteNode(imageNamed: name)
+            rock3.name = name
+            let rockWidth = rock3.size.width
+            let rockHeight = rock3.size.height
+            //print(rockXRange)
+            rock3.position = (rock.node?.position)!
+            rock3.zRotation = CGFloat(Int.random(in: 0..<360))
+            rock3.physicsBody = SKPhysicsBody(circleOfRadius: rockWidth / 2)
+            rock3.physicsBody?.isDynamic = true
+            rock3.physicsBody?.collisionBitMask = 2
+            rock3.physicsBody?.contactTestBitMask = 1
+            rock3.physicsBody?.categoryBitMask = 1
+            rock3.physicsBody?.usesPreciseCollisionDetection = true
+            //print("\(px) \(rock) \(self.frame.size.height)")
+            self.addChild(rock3)
+            let timeLeft = animationTime * Double(((rock.node?.position.y)! + self.frame.size.height / 2) / self.frame.size.height)
+            rock3.run(SKAction.move(to: CGPoint(x: rock3.position.x, y: -self.frame.size.height / 2 - rockHeight), duration: timeLeft))
+            
+            rock3.run(SKAction.wait(forDuration: timeLeft)) {
+                rock3.removeFromParent()
+            }
+        }
         rock.node?.removeFromParent()
         if (bullet.node?.name == "bullet") {
             bullet.node?.removeFromParent()
         }
         score += 1 * scoreMultiplyer
-        let powerUpChance = Int.random(in: 6..<10)
+        let powerUpChance = Int.random(in: 0..<10)
         if (powerUpChance < powerUps.count) {
+            if (powerUpChance < 6) {
+                self.run(SKAction.playSoundFileNamed("buff.mp3", waitForCompletion: false))
+            } else {
+                self.run(SKAction.playSoundFileNamed("debuff.mp3", waitForCompletion: false))
+            }
             let powerUpName = powerUps[powerUpChance]
             let powerUp = SKSpriteNode(imageNamed: powerUpName)
             powerUp.name = powerUpName
@@ -372,8 +332,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 powerUp.run(SKAction.move(to: CGPoint(x: powerUp.position.x + CGFloat(Int.random(in: -10...10)), y: powerUp.position.y + 10), duration: animationSpeed / Double(endPoint)))
             }*/
             let duration = animationTime * Double((powerUp.position.y + halfHeight) / halfHeight) / 4
-            //powerUp.run(SKAction.move(to: CGPoint(x: CGFloat(Int.random(in: -boundary...boundary)), y: endPoint), duration: duration))
-            powerUp.run(SKAction.move(to: ship.position, duration: duration))
+            powerUp.run(SKAction.move(to: CGPoint(x: CGFloat(Int.random(in: -boundary...boundary)), y: endPoint), duration: duration))
+            //powerUp.run(SKAction.move(to: ship.position, duration: duration))
             powerUp.run(SKAction.wait(forDuration: duration)) {
                 powerUp.removeFromParent()
             }
