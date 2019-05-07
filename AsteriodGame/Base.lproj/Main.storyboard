@@ -18,39 +18,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFM-ro-LkZ">
-                                <rect key="frame" x="105" y="230" width="205" height="85"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="FiM-wt-FoF">
+                                <rect key="frame" x="20" y="251" width="381" height="341"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Asteriod Adventures" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yBn-6X-2Bb">
+                                        <rect key="frame" x="0.0" y="0.0" width="381" height="47"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gFM-ro-LkZ">
+                                        <rect key="frame" x="114.5" y="97" width="152" height="48"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <state key="normal" title="New Game"/>
+                                        <connections>
+                                            <action selector="NewGameAction:" destination="OhQ-Nd-tMw" eventType="touchUpInside" id="AqP-HS-OTi"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7Y-h5-Qjp">
+                                        <rect key="frame" x="105.5" y="195" width="170" height="48"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <state key="normal" title="High Scores"/>
+                                        <connections>
+                                            <action selector="HighScoresAction:" destination="OhQ-Nd-tMw" eventType="touchUpInside" id="Yib-1N-Qaz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpB-jM-eg4">
+                                        <rect key="frame" x="143.5" y="293" width="94" height="48"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <state key="normal" title="Helper"/>
+                                        <connections>
+                                            <action selector="HelperAction:" destination="OhQ-Nd-tMw" eventType="touchUpInside" id="pjI-YU-4hh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="galaxy.png" translatesAutoresizingMaskIntoConstraints="NO" id="adf-WK-zTu">
+                                <rect key="frame" x="87" y="60" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="New Game"/>
-                                <connections>
-                                    <action selector="NewGameAction:" destination="OhQ-Nd-tMw" eventType="touchUpInside" id="AqP-HS-OTi"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7Y-h5-Qjp">
-                                <rect key="frame" x="105" y="368" width="205" height="93"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="saturn.png" translatesAutoresizingMaskIntoConstraints="NO" id="rXo-uE-Rbt">
+                                <rect key="frame" x="87" y="734" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="High Scores"/>
-                                <connections>
-                                    <action selector="HighScoresAction:" destination="OhQ-Nd-tMw" eventType="touchUpInside" id="Yib-1N-Qaz"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpB-jM-eg4">
-                                <rect key="frame" x="105" y="516" width="205" height="91"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Helper"/>
-                                <connections>
-                                    <action selector="HelperAction:" destination="OhQ-Nd-tMw" eventType="touchUpInside" id="pjI-YU-4hh"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Asteriod Adventures" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yBn-6X-2Bb">
-                                <rect key="frame" x="64" y="123" width="286" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FiM-wt-FoF" firstAttribute="top" secondItem="d77-8a-KxB" secondAttribute="top" priority="700" constant="150" id="S6F-SE-Vqd"/>
+                            <constraint firstItem="FiM-wt-FoF" firstAttribute="centerX" secondItem="d77-8a-KxB" secondAttribute="centerX" id="hHw-HA-rNS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="d77-8a-KxB"/>
                     </view>
                     <connections>
@@ -212,13 +229,20 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
+                    <connections>
+                        <segue destination="OhQ-Nd-tMw" kind="presentation" identifier="menuView" id="Cv7-dJ-aqY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="470" y="167"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="galaxy.png" width="1024" height="641"/>
+        <image name="saturn.png" width="360" height="180"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ulg-Gj-Oew"/>
+        <segue reference="Cv7-dJ-aqY"/>
     </inferredMetricsTieBreakers>
 </document>

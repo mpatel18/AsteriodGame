@@ -42,8 +42,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for i in 0..<backgrounds.count {
             setBackground(val: i)
         }
-        
-        
+        self.view?.window?.rootViewController = GameViewController()
         ship = SKSpriteNode(imageNamed: "ship")
         ship.name = "ship"
         ship.position = CGPoint(x: 0, y: self.frame.size.height / -2.2)
@@ -395,6 +394,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         })
         alertContr.addAction(okAction)
         self.present(alertContr, animated: true, completion: nil)*/
+        self.view?.window?.rootViewController?.performSegue(withIdentifier: "menuView", sender: self)
     }
     
     override func didSimulatePhysics() {
