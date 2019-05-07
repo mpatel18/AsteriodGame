@@ -20,6 +20,7 @@
 		3F06C1F42280DF6600D22ABB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06C1F32280DF6600D22ABB /* MenuViewController.swift */; };
 		3FA2A1A02280FCC9000CD190 /* HighScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA2A19F2280FCC9000CD190 /* HighScoresViewController.swift */; };
 		3FA2A1A22280FD06000CD190 /* HelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA2A1A12280FD06000CD190 /* HelperViewController.swift */; };
+		3FFB2E912281AEBE001C2B63 /* Future RPG.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FFB2E902281AEBE001C2B63 /* Future RPG.mp3 */; };
 		CB29F469227FF30800214E38 /* debuff.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB29F467227FF30800214E38 /* debuff.mp3 */; };
 		CB29F46B227FFC0D00214E38 /* buff.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB29F46A227FFC0D00214E38 /* buff.mp3 */; };
 		CB29F47F228007ED00214E38 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = CB29F479228007EC00214E38 /* spark.png */; };
@@ -72,6 +73,8 @@
 		3F06C1F32280DF6600D22ABB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		3FA2A19F2280FCC9000CD190 /* HighScoresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresViewController.swift; sourceTree = "<group>"; };
 		3FA2A1A12280FD06000CD190 /* HelperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViewController.swift; sourceTree = "<group>"; };
+		3FFB2E902281AEBE001C2B63 /* Future RPG.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Future RPG.mp3"; path = "../../../Music/iTunes/iTunes Media/Music/Eric Matyas/Unknown Album/Future RPG.mp3"; sourceTree = "<group>"; };
+		3FFB2E922281B328001C2B63 /* Future RPG.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Future RPG.mp3"; sourceTree = "<group>"; };
 		CB29F467227FF30800214E38 /* debuff.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = debuff.mp3; sourceTree = "<group>"; };
 		CB29F46A227FFC0D00214E38 /* buff.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buff.mp3; sourceTree = "<group>"; };
 		CB29F479228007EC00214E38 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				3F06C1F32280DF6600D22ABB /* MenuViewController.swift */,
+				3FFB2E922281B328001C2B63 /* Future RPG.mp3 */,
 				3F06C1BF22768EF200D22ABB /* AppDelegate.swift */,
 				3F06C1C522768EF200D22ABB /* GameScene.swift */,
 				3F06C1C122768EF200D22ABB /* GameScene.sks */,
@@ -181,6 +185,7 @@
 		CB29F45F227FED2900214E38 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				3FFB2E902281AEBE001C2B63 /* Future RPG.mp3 */,
 				CB868A392277EC0D0095143F /* Bomb.mp3 */,
 				CB29F46A227FFC0D00214E38 /* buff.mp3 */,
 				CB29F467227FF30800214E38 /* debuff.mp3 */,
@@ -302,6 +307,7 @@
 				3F06C1CD22768EF400D22ABB /* Assets.xcassets in Resources */,
 				CB29F480228007ED00214E38 /* Background1.sks in Resources */,
 				CB29F482228007ED00214E38 /* Background.sks in Resources */,
+				3FFB2E912281AEBE001C2B63 /* Future RPG.mp3 in Resources */,
 				CB29F4862280080500214E38 /* saturn.png in Resources */,
 				CB868A3D2277EC0E0095143F /* Bomb.mp3 in Resources */,
 				CB3F4B2D227D367D0098E5B8 /* crash.mp3 in Resources */,

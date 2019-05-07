@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import SpriteKit
+import AVFoundation
 
 class MenuViewController: UIViewController {
-
+    
+    var backgroundMusic = "Future RPG.mp3"
+    var player = AVAudioPlayer()
+    
     @IBOutlet weak var NewGameButton: UIButton!
     @IBAction func NewGameAction(_ sender: Any) {
+        player.stop()
         performSegue(withIdentifier: "GameView", sender: self)
     }
     
@@ -29,7 +35,18 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        do {
+            player = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Future RPG", ofType: "mp3")!))
+            player.numberOfLoops = -1
+            player.prepareToPlay()
+            
+            if !player.isPlaying {
+                player.play()
+            }
+        }
+        catch{
+            print(error)
+        }
         // Do any additional setup after loading the view.
     }
 }
