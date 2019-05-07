@@ -6,6 +6,7 @@
 //  Copyright © 2019 meekit. All rights reserved.
 //
 
+
 import SpriteKit
 import GameplayKit
 import CoreMotion
@@ -30,15 +31,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lives: Int = 3
     var livesNode: [SKSpriteNode] = []
     var score: Int = 0
+    let scoreLabel : SKLabelNode! = SKLabelNode(text: "Score: 0")
     var scoreMultiplyer = 1
     var tripleBullet = 1
+
     
     override func didMove(to view: SKView) {
         updateLives(diff: 0)
-        
+        //ScoreLabel.text = String(score)
         for i in 0..<backgrounds.count {
             setBackground(val: i)
         }
+        
         
         ship = SKSpriteNode(imageNamed: "ship")
         ship.name = "ship"
@@ -50,6 +54,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ship.physicsBody?.categoryBitMask = 3
         ship.physicsBody?.usesPreciseCollisionDetection = true
         self.addChild(ship)
+        
+        scoreLabel.position = CGPoint(x: -self.frame.size.width / 3.5, y: self.frame.size.height / 2 - ship.size.height
+        )
+        scoreLabel.text = "Score: \(score)"
+        scoreLabel.fontName = "Arial-Bold"
+        scoreLabel.fontSize = 42
+        self.addChild(scoreLabel)
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
@@ -231,6 +242,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addScore() {
         self.score += 100
+        updateScore()
     }
     
     func addLife() {
@@ -307,6 +319,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bullet.node?.removeFromParent()
         }
         score += 1 * scoreMultiplyer
+        updateScore()
         let powerUpChance = Int.random(in: 0..<10)
         if (powerUpChance < powerUps.count) {
             if (powerUpChance < 6) {
@@ -345,6 +358,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.run(SKAction.sequence(actions))
     }
     
+    func updateScore() {
+        scoreLabel.text = "Score: \(score)"
+    }
+    
     func distoryShip(rock: SKPhysicsBody, ship: SKPhysicsBody) {
         let myParticle = SKEmitterNode(fileNamed: "MyParticle.sks")!
         myParticle.position = (ship.node?.position)!
@@ -368,7 +385,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func gameOver() {
-        return
+        //let highScoresViewController = HighScoresViewController
+        //self.view?.window?.rootViewController?.present(HighScoresViewController(), animated: true, completion: nil)
+        /*let alertContr = UIAlertController(title: "Game Over", message: "Your score is: \(score)", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: {
+            _ in
+            self.tabBarController?.selectedIndex = 1
+            
+        })
+        alertContr.addAction(okAction)
+        self.present(alertContr, animated: true, completion: nil)*/
     }
     
     override func didSimulatePhysics() {
