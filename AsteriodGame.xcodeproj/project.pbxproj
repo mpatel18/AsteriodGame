@@ -17,6 +17,9 @@
 		3F06C1D022768EF400D22ABB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F06C1CE22768EF400D22ABB /* LaunchScreen.storyboard */; };
 		3F06C1DB22768EF400D22ABB /* AsteriodGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06C1DA22768EF400D22ABB /* AsteriodGameTests.swift */; };
 		3F06C1E622768EF400D22ABB /* AsteriodGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06C1E522768EF400D22ABB /* AsteriodGameUITests.swift */; };
+		3F06C1F42280DF6600D22ABB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06C1F32280DF6600D22ABB /* MenuViewController.swift */; };
+		3FA2A1A02280FCC9000CD190 /* HighScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA2A19F2280FCC9000CD190 /* HighScoresViewController.swift */; };
+		3FA2A1A22280FD06000CD190 /* HelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA2A1A12280FD06000CD190 /* HelperViewController.swift */; };
 		CB29F469227FF30800214E38 /* debuff.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB29F467227FF30800214E38 /* debuff.mp3 */; };
 		CB29F46B227FFC0D00214E38 /* buff.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB29F46A227FFC0D00214E38 /* buff.mp3 */; };
 		CB29F47F228007ED00214E38 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = CB29F479228007EC00214E38 /* spark.png */; };
@@ -66,6 +69,9 @@
 		3F06C1E122768EF400D22ABB /* AsteriodGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsteriodGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F06C1E522768EF400D22ABB /* AsteriodGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteriodGameUITests.swift; sourceTree = "<group>"; };
 		3F06C1E722768EF400D22ABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F06C1F32280DF6600D22ABB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		3FA2A19F2280FCC9000CD190 /* HighScoresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresViewController.swift; sourceTree = "<group>"; };
+		3FA2A1A12280FD06000CD190 /* HelperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViewController.swift; sourceTree = "<group>"; };
 		CB29F467227FF30800214E38 /* debuff.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = debuff.mp3; sourceTree = "<group>"; };
 		CB29F46A227FFC0D00214E38 /* buff.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buff.mp3; sourceTree = "<group>"; };
 		CB29F479228007EC00214E38 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
@@ -129,6 +135,7 @@
 		3F06C1BE22768EF200D22ABB /* AsteriodGame */ = {
 			isa = PBXGroup;
 			children = (
+				3F06C1F32280DF6600D22ABB /* MenuViewController.swift */,
 				3F06C1BF22768EF200D22ABB /* AppDelegate.swift */,
 				3F06C1C522768EF200D22ABB /* GameScene.swift */,
 				3F06C1C122768EF200D22ABB /* GameScene.sks */,
@@ -147,6 +154,8 @@
 				CB29F45F227FED2900214E38 /* Sounds */,
 				3F06C1CE22768EF400D22ABB /* LaunchScreen.storyboard */,
 				3F06C1D122768EF400D22ABB /* Info.plist */,
+				3FA2A19F2280FCC9000CD190 /* HighScoresViewController.swift */,
+				3FA2A1A12280FD06000CD190 /* HelperViewController.swift */,
 			);
 			path = AsteriodGame;
 			sourceTree = "<group>";
@@ -327,9 +336,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FA2A1A22280FD06000CD190 /* HelperViewController.swift in Sources */,
+				3FA2A1A02280FCC9000CD190 /* HighScoresViewController.swift in Sources */,
 				3F06C1C622768EF200D22ABB /* GameScene.swift in Sources */,
 				3F06C1C822768EF200D22ABB /* GameViewController.swift in Sources */,
 				3F06C1C022768EF200D22ABB /* AppDelegate.swift in Sources */,
+				3F06C1F42280DF6600D22ABB /* MenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
