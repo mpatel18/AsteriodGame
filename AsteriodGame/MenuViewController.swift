@@ -36,7 +36,7 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
         
         do {
-            player = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Future RPG", ofType: "mp3")!))
+            player = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Future-RPG", ofType: "mp3")!))
             player.numberOfLoops = -1
             player.prepareToPlay()
             
