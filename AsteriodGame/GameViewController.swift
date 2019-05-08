@@ -12,6 +12,10 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var ReturnButton: UIButton!
+    @IBAction func pressReturn(_ sender: Any) {
+        performSegue(withIdentifier: "MenuView", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

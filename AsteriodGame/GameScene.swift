@@ -29,7 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let motionManager = CMMotionManager()
     var xMove = CGFloat(0)
-    var lives: Int = 1
+    var lives: Int = 3
     var livesNode: [SKSpriteNode] = []
     var score: Int = 0
     let scoreLabel : SKLabelNode! = SKLabelNode(text: "Score: 0")
@@ -43,7 +43,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for i in 0..<backgrounds.count {
             setBackground(val: i)
         }
-        self.view?.window?.rootViewController = GameViewController()
+        //self.view?.window?.rootViewController = GameViewController()
         ship = SKSpriteNode(imageNamed: "ship")
         ship.name = "ship"
         ship.position = CGPoint(x: 0, y: self.frame.size.height / -2.2)
@@ -55,7 +55,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ship.physicsBody?.usesPreciseCollisionDetection = true
         self.addChild(ship)
         
-        scoreLabel.position = CGPoint(x: -self.frame.size.width / 3.5, y: self.frame.size.height / 2 - ship.size.height
+        scoreLabel.position = CGPoint(x: -self.frame.size.width / 2 + 150, y: self.frame.size.height / 2 - ship.size.height
         )
         scoreLabel.text = "Score: \(score)"
         scoreLabel.fontName = "Arial"
@@ -320,7 +320,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         score += 1 * scoreMultiplyer
         updateScore()
-        let powerUpChance = Int.random(in: 0..<10)
+        let powerUpChance = Int.random(in: 0..<20)
         if (powerUpChance < powerUps.count) {
             if (powerUpChance < 6) {
                 self.run(SKAction.playSoundFileNamed("buff.mp3", waitForCompletion: false))
@@ -396,8 +396,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         let okAction = UIAlertAction(title: "OK", style: .default, handler: {
             _ in
-            hostVC?.tabBarController?.selectedIndex = 1
-            print(self.view?.window?.rootViewController?.tabBarController?.selectedIndex = 1)
+            //hostVC?.tabBarController?.selectedIndex = 1
+            hostVC?.performSegue(withIdentifier: "MenuView", sender: self)
+            //print(self.view?.window?.rootViewController?.tabBarController?.selectedIndex = 1)
         })
         alert.addAction(okAction)
         //self.present(alertContr, animated: true, completion: nil)

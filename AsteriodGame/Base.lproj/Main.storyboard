@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OhQ-Nd-tMw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YD4-Yn-Yz3">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -59,7 +59,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="saturn.png" translatesAutoresizingMaskIntoConstraints="NO" id="rXo-uE-Rbt">
-                                <rect key="frame" x="87" y="734" width="240" height="128"/>
+                                <rect key="frame" x="87" y="666" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -88,10 +88,13 @@
         <scene sceneID="UkV-eY-iUN">
             <objects>
                 <tabBarController id="YD4-Yn-Yz3" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MOW-vS-Ibv">
+                    <tabBar key="tabBar" alpha="0.0" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MOW-vS-Ibv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="OhQ-Nd-tMw" kind="relationship" relationship="viewControllers" id="Ts4-IB-24n"/>
@@ -245,11 +248,27 @@
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOz-ex-Ppg">
+                                <rect key="frame" x="143" y="55" width="128" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <state key="normal" title="Quit"/>
+                                <connections>
+                                    <action selector="MenuAction:" destination="JwS-Oz-cVQ" eventType="touchUpInside" id="a3x-jg-DD1"/>
+                                    <action selector="pressReturn:" destination="BV1-FR-VrT" eventType="touchUpInside" id="KXv-TY-fVi"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="top" secondItem="iOz-ex-Ppg" secondAttribute="top" id="PEh-li-kSt"/>
+                            <constraint firstItem="iOz-ex-Ppg" firstAttribute="centerX" secondItem="4qk-I5-YsI" secondAttribute="centerX" id="ZOm-aR-B51"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
                     <connections>
-                        <segue destination="OhQ-Nd-tMw" kind="presentation" identifier="menuView" id="Cv7-dJ-aqY"/>
+                        <outlet property="ReturnButton" destination="iOz-ex-Ppg" id="ZG3-gB-mnG"/>
+                        <segue destination="OhQ-Nd-tMw" kind="presentation" identifier="MenuView" id="Cv7-dJ-aqY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
