@@ -18,6 +18,7 @@
 		3F06C1DB22768EF400D22ABB /* AsteriodGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06C1DA22768EF400D22ABB /* AsteriodGameTests.swift */; };
 		3F06C1E622768EF400D22ABB /* AsteriodGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06C1E522768EF400D22ABB /* AsteriodGameUITests.swift */; };
 		3F06C1F42280DF6600D22ABB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06C1F32280DF6600D22ABB /* MenuViewController.swift */; };
+		3F55F9F62283558200B9DD17 /* Future-RPG.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F55F9F52283558200B9DD17 /* Future-RPG.mp3 */; };
 		3FA2A1A02280FCC9000CD190 /* HighScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA2A19F2280FCC9000CD190 /* HighScoresViewController.swift */; };
 		3FA2A1A22280FD06000CD190 /* HelperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA2A1A12280FD06000CD190 /* HelperViewController.swift */; };
 		CB29F469227FF30800214E38 /* debuff.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB29F467227FF30800214E38 /* debuff.mp3 */; };
@@ -33,7 +34,6 @@
 		CB868A3B2277EC0E0095143F /* Gun.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB868A372277EC0D0095143F /* Gun.mp3 */; };
 		CB868A3C2277EC0E0095143F /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = CB868A382277EC0D0095143F /* MyParticle.sks */; };
 		CB868A3D2277EC0E0095143F /* Bomb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB868A392277EC0D0095143F /* Bomb.mp3 */; };
-		CB8CE44622827E6800D7517B /* Future RPG.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB8CE44522827E6800D7517B /* Future RPG.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +71,7 @@
 		3F06C1E522768EF400D22ABB /* AsteriodGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteriodGameUITests.swift; sourceTree = "<group>"; };
 		3F06C1E722768EF400D22ABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F06C1F32280DF6600D22ABB /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		3F55F9F52283558200B9DD17 /* Future-RPG.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Future-RPG.mp3"; sourceTree = "<group>"; };
 		3FA2A19F2280FCC9000CD190 /* HighScoresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresViewController.swift; sourceTree = "<group>"; };
 		3FA2A1A12280FD06000CD190 /* HelperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViewController.swift; sourceTree = "<group>"; };
 		3FFB2E922281B328001C2B63 /* Future RPG.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Future RPG.mp3"; sourceTree = "<group>"; };
@@ -87,7 +88,6 @@
 		CB868A372277EC0D0095143F /* Gun.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Gun.mp3; sourceTree = "<group>"; };
 		CB868A382277EC0D0095143F /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		CB868A392277EC0D0095143F /* Bomb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Bomb.mp3; sourceTree = "<group>"; };
-		CB8CE44522827E6800D7517B /* Future RPG.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Future RPG.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,7 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				CB868A392277EC0D0095143F /* Bomb.mp3 */,
-				CB8CE44522827E6800D7517B /* Future RPG.mp3 */,
+				3F55F9F52283558200B9DD17 /* Future-RPG.mp3 */,
 				CB29F46A227FFC0D00214E38 /* buff.mp3 */,
 				CB29F467227FF30800214E38 /* debuff.mp3 */,
 				CB3F4B2C227D36780098E5B8 /* crash.mp3 */,
@@ -310,11 +310,11 @@
 				CB29F4862280080500214E38 /* saturn.png in Resources */,
 				CB868A3D2277EC0E0095143F /* Bomb.mp3 in Resources */,
 				CB3F4B2D227D367D0098E5B8 /* crash.mp3 in Resources */,
-				CB8CE44622827E6800D7517B /* Future RPG.mp3 in Resources */,
 				CB29F469227FF30800214E38 /* debuff.mp3 in Resources */,
 				CB868A3B2277EC0E0095143F /* Gun.mp3 in Resources */,
 				3F06C1D022768EF400D22ABB /* LaunchScreen.storyboard in Resources */,
 				3F06C1C422768EF200D22ABB /* Actions.sks in Resources */,
+				3F55F9F62283558200B9DD17 /* Future-RPG.mp3 in Resources */,
 				CB29F46B227FFC0D00214E38 /* buff.mp3 in Resources */,
 				CB29F484228007ED00214E38 /* Background0.sks in Resources */,
 				CB868A3C2277EC0E0095143F /* MyParticle.sks in Resources */,
