@@ -281,6 +281,7 @@
         <image name="saturn.png" width="360" height="180"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ZkA-iV-wdM"/>
         <segue reference="Cv7-dJ-aqY"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -222,26 +222,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func speedUp() {
         //print(timeInterval)
-        if (self.animationTime > 3) {
-            self.animationTime -= 3
-            self.timeInterval -= 0.3
+        //if (self.animationTime > 3) {
+            self.animationTime /= 2
+            self.timeInterval /= 2
             timer.invalidate()
             timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(rockDown), userInfo: nil, repeats: true)
-        }
+        //}
     }
     
     func slowDown() {
         //print(timeInterval)
-        if (self.animationTime < 15) {
-            self.animationTime += 3
-            self.timeInterval += 0.3
+        //if (self.animationTime < 15) {
+            self.animationTime *= 2
+            self.timeInterval *= 2
             timer.invalidate()
             timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(rockDown), userInfo: nil, repeats: true)
-        }
+        //}
     }
     
     func addScore() {
         self.score += 100
+        if (score / 1000 != (score - scoreMultiplyer) / 1000) {
+            self.animationTime /= 2
+            self.timeInterval /= 2
+            timer.invalidate()
+            timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(rockDown), userInfo: nil, repeats: true)
+        }
         updateScore()
     }
     
@@ -319,6 +325,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bullet.node?.removeFromParent()
         }
         score += 1 * scoreMultiplyer
+        if (score / 1000 != (score - scoreMultiplyer) / 1000) {
+            self.animationTime /= 2
+            self.timeInterval /= 2
+            timer.invalidate()
+            timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(rockDown), userInfo: nil, repeats: true)
+        }
         updateScore()
         let powerUpChance = Int.random(in: 0..<20)
         if (powerUpChance < powerUps.count) {
