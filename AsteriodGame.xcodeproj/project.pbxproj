@@ -12,7 +12,6 @@
 		3F06C1C422768EF200D22ABB /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3F06C1C322768EF200D22ABB /* Actions.sks */; };
 		3F06C1C622768EF200D22ABB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06C1C522768EF200D22ABB /* GameScene.swift */; };
 		3F06C1C822768EF200D22ABB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06C1C722768EF200D22ABB /* GameViewController.swift */; };
-		3F06C1CB22768EF200D22ABB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F06C1C922768EF200D22ABB /* Main.storyboard */; };
 		3F06C1CD22768EF400D22ABB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F06C1CC22768EF400D22ABB /* Assets.xcassets */; };
 		3F06C1D022768EF400D22ABB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F06C1CE22768EF400D22ABB /* LaunchScreen.storyboard */; };
 		3F06C1DB22768EF400D22ABB /* AsteriodGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06C1DA22768EF400D22ABB /* AsteriodGameTests.swift */; };
@@ -31,6 +30,7 @@
 		CB29F484228007ED00214E38 /* Background0.sks in Resources */ = {isa = PBXBuildFile; fileRef = CB29F47E228007ED00214E38 /* Background0.sks */; };
 		CB29F4862280080500214E38 /* saturn.png in Resources */ = {isa = PBXBuildFile; fileRef = CB29F4852280080500214E38 /* saturn.png */; };
 		CB3F4B2D227D367D0098E5B8 /* crash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB3F4B2C227D36780098E5B8 /* crash.mp3 */; };
+		CB82E0B822835F4B00C73DD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB82E0B722835F4B00C73DD1 /* Main.storyboard */; };
 		CB868A3B2277EC0E0095143F /* Gun.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB868A372277EC0D0095143F /* Gun.mp3 */; };
 		CB868A3C2277EC0E0095143F /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = CB868A382277EC0D0095143F /* MyParticle.sks */; };
 		CB868A3D2277EC0E0095143F /* Bomb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB868A392277EC0D0095143F /* Bomb.mp3 */; };
@@ -60,7 +60,6 @@
 		3F06C1C322768EF200D22ABB /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		3F06C1C522768EF200D22ABB /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		3F06C1C722768EF200D22ABB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		3F06C1CA22768EF200D22ABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F06C1CC22768EF400D22ABB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F06C1CF22768EF400D22ABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F06C1D122768EF400D22ABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,6 +84,7 @@
 		CB29F47E228007ED00214E38 /* Background0.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Background0.sks; sourceTree = "<group>"; };
 		CB29F4852280080500214E38 /* saturn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saturn.png; sourceTree = "<group>"; };
 		CB3F4B2C227D36780098E5B8 /* crash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = crash.mp3; sourceTree = "<group>"; };
+		CB82E0B722835F4B00C73DD1 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CB868A372277EC0D0095143F /* Gun.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Gun.mp3; sourceTree = "<group>"; };
 		CB868A382277EC0D0095143F /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		CB868A392277EC0D0095143F /* Bomb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Bomb.mp3; sourceTree = "<group>"; };
@@ -153,7 +153,7 @@
 				CB29F479228007EC00214E38 /* spark.png */,
 				CB868A382277EC0D0095143F /* MyParticle.sks */,
 				3F06C1C722768EF200D22ABB /* GameViewController.swift */,
-				3F06C1C922768EF200D22ABB /* Main.storyboard */,
+				CB82E0B722835F4B00C73DD1 /* Main.storyboard */,
 				3F06C1CC22768EF400D22ABB /* Assets.xcassets */,
 				CB29F45F227FED2900214E38 /* Sounds */,
 				3F06C1CE22768EF400D22ABB /* LaunchScreen.storyboard */,
@@ -299,7 +299,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F06C1CB22768EF200D22ABB /* Main.storyboard in Resources */,
 				CB29F47F228007ED00214E38 /* spark.png in Resources */,
 				3F06C1C222768EF200D22ABB /* GameScene.sks in Resources */,
 				CB29F481228007ED00214E38 /* galaxy.png in Resources */,
@@ -310,6 +309,7 @@
 				CB29F4862280080500214E38 /* saturn.png in Resources */,
 				CB868A3D2277EC0E0095143F /* Bomb.mp3 in Resources */,
 				CB3F4B2D227D367D0098E5B8 /* crash.mp3 in Resources */,
+				CB82E0B822835F4B00C73DD1 /* Main.storyboard in Resources */,
 				CB29F469227FF30800214E38 /* debuff.mp3 in Resources */,
 				CB868A3B2277EC0E0095143F /* Gun.mp3 in Resources */,
 				3F06C1D022768EF400D22ABB /* LaunchScreen.storyboard in Resources */,
@@ -383,14 +383,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3F06C1C922768EF200D22ABB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3F06C1CA22768EF200D22ABB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3F06C1CE22768EF400D22ABB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
