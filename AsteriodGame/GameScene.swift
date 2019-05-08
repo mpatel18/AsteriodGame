@@ -8,6 +8,7 @@
 
 
 import SpriteKit
+import UIKit
 import GameplayKit
 import CoreMotion
 
@@ -28,7 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let motionManager = CMMotionManager()
     var xMove = CGFloat(0)
-    var lives: Int = 3
+    var lives: Int = 1
     var livesNode: [SKSpriteNode] = []
     var score: Int = 0
     let scoreLabel : SKLabelNode! = SKLabelNode(text: "Score: 0")
@@ -57,7 +58,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.position = CGPoint(x: -self.frame.size.width / 3.5, y: self.frame.size.height / 2 - ship.size.height
         )
         scoreLabel.text = "Score: \(score)"
-        scoreLabel.fontName = "Arial-Bold"
+        scoreLabel.fontName = "Arial"
         scoreLabel.fontSize = 42
         self.addChild(scoreLabel)
         
@@ -386,15 +387,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func gameOver() {
         //let highScoresViewController = HighScoresViewController
         //self.view?.window?.rootViewController?.present(HighScoresViewController(), animated: true, completion: nil)
-        /*let alertContr = UIAlertController(title: "Game Over", message: "Your score is: \(score)", preferredStyle: .alert)
+        ship.removeFromParent()
+        let alert = UIAlertController(title: "Game Over", message: "Your score is: \(score)", preferredStyle: .alert)
+        var hostVC = self.view?.window?.rootViewController
+        
+        while let next = hostVC?.presentedViewController {
+            hostVC = next
+        }
         let okAction = UIAlertAction(title: "OK", style: .default, handler: {
             _ in
-            self.tabBarController?.selectedIndex = 1
-            
+            hostVC?.tabBarController?.selectedIndex = 1
+            print(self.view?.window?.rootViewController?.tabBarController?.selectedIndex = 1)
         })
-        alertContr.addAction(okAction)
-        self.present(alertContr, animated: true, completion: nil)*/
-        self.view?.window?.rootViewController?.performSegue(withIdentifier: "menuView", sender: self)
+        alert.addAction(okAction)
+        //self.present(alertContr, animated: true, completion: nil)
+        //self.view?.window?.rootViewController?.performSegue(withIdentifier: "menuView", sender: self)
+        
+        
+        hostVC?.present(alert, animated: true, completion: nil)
     }
     
     override func didSimulatePhysics() {

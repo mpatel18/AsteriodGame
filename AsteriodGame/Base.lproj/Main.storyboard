@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Menu View Controller-->
+        <!--Item-->
         <scene sceneID="eGi-9v-f3Y">
             <objects>
                 <viewController id="OhQ-Nd-tMw" customClass="MenuViewController" customModule="AsteriodGame" customModuleProvider="target" sceneMemberID="viewController">
@@ -70,6 +70,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d77-8a-KxB"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="e2W-gg-eoj"/>
                     <connections>
                         <outlet property="HelperButton" destination="tpB-jM-eg4" id="NGQ-ww-FNa"/>
                         <outlet property="HighScoresButton" destination="V7Y-h5-Qjp" id="HLq-8X-WRT"/>
@@ -83,7 +84,24 @@
             </objects>
             <point key="canvasLocation" x="-439.13043478260875" y="166.74107142857142"/>
         </scene>
-        <!--High Scores View Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="UkV-eY-iUN">
+            <objects>
+                <tabBarController id="YD4-Yn-Yz3" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MOW-vS-Ibv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="OhQ-Nd-tMw" kind="relationship" relationship="viewControllers" id="Ts4-IB-24n"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HZy-cw-KUU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1449" y="185"/>
+        </scene>
+        <!--Item-->
         <scene sceneID="5it-6y-UsH">
             <objects>
                 <viewController id="dOd-qm-JGU" customClass="HighScoresViewController" customModule="AsteriodGame" customModuleProvider="target" sceneMemberID="viewController">
@@ -138,6 +156,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ulo-ln-Nq3"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="O9V-sP-Zv9"/>
                     <connections>
                         <outlet property="HighScoresTable" destination="pEv-AB-XQA" id="gE9-aJ-wtz"/>
                         <outlet property="MenuButton" destination="52R-j3-9oA" id="h7U-wf-xXO"/>
@@ -235,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="470" y="167"/>
+            <point key="canvasLocation" x="469.56521739130437" y="166.74107142857142"/>
         </scene>
     </scenes>
     <resources>
