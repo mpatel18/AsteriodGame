@@ -14,6 +14,7 @@ class MenuViewController: UIViewController {
     
     var backgroundMusic = "Future RPG.mp3"
     var player = AVAudioPlayer()
+    var mute = false
     var lastScore : Int?
     
     @IBOutlet weak var NewGameButton: UIButton!
@@ -40,6 +41,18 @@ class MenuViewController: UIViewController {
         performSegue(withIdentifier: "HelperView", sender: self)
     }
     
+    @IBOutlet weak var MuteButton: UIButton!
+    @IBAction func MuteAction(_ sender: UIButton) {
+        if mute == false{
+            MuteButton.titleLabel?.text = "Unmute"
+            player.pause()
+            mute = true
+        } else {
+            MuteButton.titleLabel?.text = "Mute"
+            player.play()
+            mute = false
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
