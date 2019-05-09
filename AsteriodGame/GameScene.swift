@@ -245,11 +245,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addScore() {
         self.score += 100
-        if (score / 1000 != (score - scoreMultiplyer) / 1000) {
-            self.animationTime /= 2
-            self.timeInterval /= 2
-            timer.invalidate()
-            timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(rockDown), userInfo: nil, repeats: true)
+        if (score / 200 != (score - scoreMultiplyer) / 200) {
+            speedUp()
         }
         updateScore()
     }
@@ -357,11 +354,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bullet.node?.removeFromParent()
         }
         score += 1 * scoreMultiplyer
-        if (score / 1000 != (score - scoreMultiplyer) / 1000) {
-            self.animationTime /= 2
-            self.timeInterval /= 2
-            timer.invalidate()
-            timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(rockDown), userInfo: nil, repeats: true)
+        if (score / 200 != (score - scoreMultiplyer) / 200) {
+            speedUp()
         }
         updateScore()
         let powerUpChance = Int.random(in: 0..<20)
