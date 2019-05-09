@@ -14,6 +14,9 @@ import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var storedHighscores = UserDefaults.standard.object(forKey: "Scores")
+    //var sortedScores : [Int] = []
+
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
@@ -251,6 +254,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         updateScore()
     }
     
+    func saveScore() {
+        var decoded = storedHighscores as? [String:String]
+        let currTime = Date().description(with : .current) as! String
+        if decoded == nil {
+            var dict : [String: String] = [:]
+            dict[String(score)] = currTime
+            decoded = dict
+        }
+        else {
+            let highscoreKeys = decoded!.keys
+        
+            if highscoreKeys.count < 10 {
+                decoded![String(score)] = currTime
+            } else {
+            
+                let scoreMin = highscoreKeys.min()
+                // let scoreMax = highscoreKeys.max()
+            
+                if score >= Int(scoreMin!)! {
+                    decoded!.removeValue(forKey: scoreMin!)
+                    decoded![String(score)] = currTime
+                }
+            }
+        }
+        
+        UserDefaults.standard.set(decoded!, forKey: "Scores")
+        //sortedScores = Array(storedHighscores!.keys).sorted().reversed()
+        
+    }
     func addLife() {
         self.lives += 1
         updateLives(diff: 1)
@@ -399,6 +431,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func gameOver() {
         //let highScoresViewController = HighScoresViewController
         //self.view?.window?.rootViewController?.present(HighScoresViewController(), animated: true, completion: nil)
+        saveScore()
         ship.removeFromParent()
         let alert = UIAlertController(title: "Game Over", message: "Your score is: \(score)", preferredStyle: .alert)
         var hostVC = self.view?.window?.rootViewController
@@ -406,6 +439,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         while let next = hostVC?.presentedViewController {
             hostVC = next
         }
+        
         let okAction = UIAlertAction(title: "OK", style: .default, handler: {
             _ in
             //hostVC?.tabBarController?.selectedIndex = 1
@@ -418,7 +452,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         hostVC?.present(alert, animated: true, completion: nil)
+        /*if let tabVC = self.view?.window?.rootViewController as! UITabBarController? {
+            let menuTab = tabVC.viewControllers![0]
+            if let menuVC = menuTab as? MenuViewController {
+                menuVC.lastScore = score
+            }
+        }*/
     }
+
     
     override func didSimulatePhysics() {
         let xLimit = (self.frame.size.width - ship.size.width) / 2

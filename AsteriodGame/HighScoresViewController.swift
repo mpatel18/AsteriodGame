@@ -10,7 +10,9 @@ import UIKit
 
 class HighScoresViewController: UIViewController, UITableViewDataSource {
     
-    private var data:[Int] = []
+    var storedHighscores = UserDefaults.standard.object(forKey: "Scores")
+    
+    var sortedScores : [String] = []
 
     @IBOutlet weak var MenuButton: UIButton!
     @IBAction func MenuAction(_ sender: Any) {
@@ -23,15 +25,43 @@ class HighScoresViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return storedHighscores == nil ? 0 : (storedHighscores as! [String: String]).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")! //1.
-
+        
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "cellReuseIdentifier") //1.
+        
+        let score = sortedScores[indexPath.row]
+        let time = (storedHighscores as! [String: String])[score]
+        
+        cell.textLabel!.text = "\(indexPath.row + 1): \(score) pts"
+        cell.detailTextLabel!.text = time
+        
         return cell //4.
     }
 
+    func sortScores() {
+        /*let highscoreKeys = storedHighscores!.keys
+        let currTime = Date().description(with : .current)
+        
+        if highscoreKeys.count < 10 {
+            storedHighscores![score!] = currTime
+        } else {
+        
+            let scoreMin = highscoreKeys.min()
+            // let scoreMax = highscoreKeys.max()
+        
+            if score! >= scoreMin! {
+                storedHighscores!.removeValue(forKey: scoreMin!)
+                storedHighscores![score!] = currTime
+            }
+        }*/
+        
+        
+        sortedScores = Array((storedHighscores as! [String: String]).keys).sorted().reversed()
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

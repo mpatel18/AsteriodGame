@@ -14,6 +14,7 @@ class MenuViewController: UIViewController {
     
     var backgroundMusic = "Future RPG.mp3"
     var player = AVAudioPlayer()
+    var lastScore : Int?
     
     @IBOutlet weak var NewGameButton: UIButton!
     @IBAction func NewGameAction(_ sender: Any) {
@@ -24,6 +25,14 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var HighScoresButton: UIButton!
     @IBAction func HighScoresAction(_ sender: Any) {
         performSegue(withIdentifier: "HighScoreView", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "HighScoreView" {
+            if let highScoresVC = segue.destination as? HighScoresViewController {
+                highScoresVC.sortScores()
+            }
+        }
     }
     
     @IBOutlet weak var HelperButton: UIButton!
