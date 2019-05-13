@@ -58,8 +58,9 @@ class HighScoresViewController: UIViewController, UITableViewDataSource {
             }
         }*/
         
-        
-        sortedScores = Array((storedHighscores as! [String: String]).keys).sorted().reversed()
+        if storedHighscores != nil {
+            sortedScores = Array((storedHighscores as! [String: String]).keys).sorted().reversed()
+        }
 
     }
     
